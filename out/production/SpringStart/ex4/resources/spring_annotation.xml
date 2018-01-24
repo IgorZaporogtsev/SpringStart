@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <!-- <context:annotation-config />-->
+
+    <!--<context:component-scan
+        base-package="ex4">
+        <context:include-filter type="assignable"
+        expression="ex4.java.performer.Instrument"/>
+    </context:component-scan>-->
+
+    <context:component-scan
+            base-package="ex4" />
+
+
+  <!--  <bean id="benny"
+          class="ex4.java.performer.instrumentalist.Instrumentalist">
+        <property name="song" value="Jingle Bells" />
+
+
+&lt;!&ndash;        <property name="instrument" ref="saxophone" />&ndash;&gt;
+
+    </bean>
+
+    <bean id="saxophone"
+          class="ex4.java.performer.instrumentalist.Saxophone" />
+
+
+    <bean id="piano"
+          class="ex4.java.performer.instrumentalist.Piano" />
+    <bean class="ex4.java.performer.instrumentalist.Piano">
+        <qualifier value="stringed" />
+    </bean>
+
+-->
+</beans>

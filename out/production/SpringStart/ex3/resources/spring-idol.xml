@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+<!-- использование в компоненте конструктора по умолчанию -->
+    <!--<bean id="juggler"
+          class="ex3.java.performer.juggler" />-->
+
+<!--Использование в компоненте конструктора спараметрами-->
+    <bean id="duke"
+          class="ex3.java.performer.juggler.Juggler">
+        <constructor-arg value="15" />
+    </bean>
+
+ <!-- компонент Жанглер поэт-->
+
+    <bean id="poeticDuke"
+          class="ex3.java.performer.juggler.PoeticJuggler">
+
+        <!--Использование конструкторов-->
+        <constructor-arg value="15" />
+        <constructor-arg ref="sonnet29"/>
+
+    </bean>
+
+
+    <bean id="sonnet29"
+          class="ex3.java.performer.juggler.Sonnet29" />
+
+<!--Singleton-->
+    <bean id="theStage"
+          class="ex3.java.performer.Stage"
+          factory-method="getInstance" />
+<!--
+    <bean id="ticket"
+          class="ex3.java.performer.Ticket" scope="prototype" />-->
+
+
+    <bean id="saxophone"
+          class="ex3.java.performer.instrumentalist.Saxophone" />
+
+    <bean id="piano"
+          class="ex3.java.performer.instrumentalist.Piano" />
+
+<!--             Использование сеттеров
+
+        <bean id="instrumentalist"
+              class="ex3.java.performer.Instrumentalistumentalist.instrumentalist">
+
+            <property name="song" value="Jingle Bells" />
+            <property name="instrument" ref="piano" />      //можно применить ref="saxophone"
+        </bean>
+
+
+-->
+
+
+<!-- Использование в компоненте пространство имиен p -->
+         <bean id="kenny" class="ex3.java.performer.instrumentalist.Instrumentalist"
+            p:song = "Jingle Bells"
+            p:instrument-ref = "saxophone" />
+
+<!-- Использование Коллекций List-->
+
+    <bean id="guitar"
+          class="ex3.java.performer.oneManBand.Guitar" />
+
+    <bean id="cymbal"
+          class="ex3.java.performer.oneManBand.Cymbal" />
+
+    <bean id="harmonica"
+          class="ex3.java.performer.oneManBand.Harmonica" />
+
+
+    <bean id="hank"
+          class="ex3.java.performer.oneManBand.OneManBandList">
+        <property name="instruments">
+            <list>
+                <ref bean="guitar" />
+                <ref bean="cymbal" />
+                <ref bean="harmonica" />
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- Использование Коллекций Map -->
+
+
+    <bean id="hank_2" class="ex3.java.performer.oneManBand.OneManBandMap">
+    <property name="instruments">
+    <map>
+        <entry key="GUITAR" value-ref="guitar" />
+        <entry key="CYMBAL" value-ref="cymbal" />
+        <entry key="HARMONICA" value-ref="harmonica" />
+    </map>
+    </property>
+    </bean>
+
+
+    <!-- Использование Коллекций Properties -->
+
+    <bean id="hank_3" class="ex3.java.performer.oneManBand.OneManBandProperties">
+        <property name="instruments">
+            <props>
+                <prop key="GUITAR">STRUM STRUM STRUM</prop>
+                <prop key="CYMBAL">CRASH CRASH CRASH</prop>
+                <prop key="HARMONICA">HUM HUM HUM</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Абстрактные компоненты -->
+
+    <bean id="baseSaxophonist"
+          class="ex3.java.performer.instrumentalist.Instrumentalist"
+          abstract="true">
+        <property name="instrument" ref="saxophone" />
+        <property name="song" value="Jingle Bells" />
+    </bean>
+
+    <bean id="kenny_2" parent="baseSaxophonist" />
+    <bean id="david" parent="baseSaxophonist" />
+
+
+    <!--Переопределение наследуемых свойств-->
+
+    <bean id="frank" parent="baseSaxophonist">
+        <property name="song" value="Mary had a little lamb" />
+    </bean>
+
+    <!-- Общие абстрактные свойства_1 -->
+
+    <bean id="taylor"
+          class="ex3.java.performer.vocalist.Vocalist">
+        <property name="song" value="Somewhere Over the Rainbow" />
+    </bean>
+
+    <bean id="stevie"
+          class="ex3.java.performer.instrumentalist.Instrumentalist">
+        <property name="instrument" ref="guitar" />
+        <property name="song" value="Somewhere Over the Rainbow" />
+    </bean>
+
+    <!-- Общие абстрактные свойства_2 -->
+
+    <bean id="basePerformer" abstract="true">
+        <property name="song" value="Somewhere Over the Rainbow" />
+    </bean>
+
+    <bean id="taylor_2"
+          class="ex3.java.performer.vocalist.Vocalist"
+          parent="basePerformer" />
+    <bean id="stevie_2"
+          class="ex3.java.performer.instrumentalist.Instrumentalist"
+          parent="basePerformer">
+        <property name="instrument" ref="guitar" />
+    </bean>
+
+    <!-- 3.2.1. Основы замещения методов  -->
+
+    <bean id="harry"
+          class="ex3.java.performer.magician.Magician">
+
+        <property name="magicBox" ref="magicBox" />
+        <property name="magicWords" value="Bippity boppity boo" />
+
+    </bean>
+
+    <bean id="magicBox"
+          class="ex3.java.performer.magician.MagicBoxImpl">
+        <replaced-method
+                name="getContents"
+                replacer="tigerReplacer" />
+    </bean>
+
+    <bean id="tigerReplacer"
+          class="ex3.java.performer.magician.TigerReplacer" />
+
+<!--3.2.2. Использование внедрения методов чтения-->
+
+    <bean id="stevie_3"
+          class="ex3.java.performer.instrumentalist.NewInstrumentalist">
+        <lookup-method name="getInstrument" bean="guitar" />
+        <property name="song" value="Greensleeves" />
+
+    </bean>
+
+    <!-- 3.3. Внедрение не-Spring компонентов -->
+  <!--  <bean id="pianist"
+          class="ex3.java.performer.instrumentalist.NewInstrumentalist"
+          abstract="true">
+        <property name="song" value="Chopsticks" />
+        <property name="instrument">
+            <bean class="ex3.java.performer.instrumentalist.Piano" />
+        </property>
+    </bean>-->
+
+
+
+
+</beans>

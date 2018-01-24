@@ -1,0 +1,30 @@
+Можно ли создать для одного рыцаря 2 квеста?
+
+Здесь я создаю 2 рыцаря и у них разные квесты
+
+------------------------Main--------------------------------
+
+  `Knight knight_1 = (Knight) context.getBean("knight_1");`
+  `Knight knight_2 = (Knight) context.getBean("knight_2");`
+
+  `knight_1.embarkOnQuest();`
+  `knight_2.embarkOnQuest();`
+
+-----------------XML--------------------------------------
+
+  `<bean id="knight_1" class="ex2.java.BraveKnight">`
+   `<constructor-arg ref="quest_1" /> <!-- Внедрение компонента quest -->`
+   `   </bean>`
+
+   `   <bean id="knight_2" class="ex2.java.BraveKnight">`
+   `        <constructor-arg ref="quest_2" /> <!-- Внедрение компонента quest -->`
+   `   </bean>`
+
+
+   `   <!-- Создание SlayDragonQuest -->`
+   `   <bean id="quest_1"`
+   `         class="ex2.java.quest.SlayDragonQuest" />`
+
+  `      <!-- Создание MakeRoundTableRounderQuest -->`
+   `   <bean id="quest_2"`
+    `        class="ex2.java.quest.MakeRoundTableRounderQuest" />`
