@@ -18,8 +18,9 @@
     <context:component-scan
             base-package="ex4" />
 
+<!--================================================================-->
 
-  <!--  <bean id="benny"
+   <!-- <bean id="benny"
           class="ex4.java.performer.instrumentalist.Instrumentalist">
         <property name="song" value="Jingle Bells" />
 
@@ -31,12 +32,14 @@
     <bean id="saxophone"
           class="ex4.java.performer.instrumentalist.Saxophone" />
 
-
     <bean id="piano"
           class="ex4.java.performer.instrumentalist.Piano" />
-    <bean class="ex4.java.performer.instrumentalist.Piano">
-        <qualifier value="stringed" />
-    </bean>
+&lt;!&ndash;================================================================&ndash;&gt;
+&lt;!&ndash;
+    <bean class="ex4.java.performer.instrumentalist.Piano">          &lt;!&ndash;?????&ndash;&gt;
+        <qualifier value="key_instrument" />
+    </bean>&ndash;&gt;-->
 
--->
+
+
 </beans>

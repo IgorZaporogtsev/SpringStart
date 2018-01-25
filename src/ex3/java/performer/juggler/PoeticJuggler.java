@@ -4,7 +4,7 @@ public class PoeticJuggler extends Juggler {
 
     private Poem poem;
 
-    public PoeticJuggler(Poem poem) {              // Внедрение поэмы
+    public PoeticJuggler(Poem poem) {              // Внедрение поэмы Зачем здесь этот конструктор? TODO
         super();
         this.poem = poem;
     }

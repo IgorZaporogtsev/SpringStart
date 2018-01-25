@@ -28,10 +28,11 @@ public class PoeticJuggler extends Juggler {
     }
 
 
-    public PoeticJuggler(int beanBags, Poem poem) {
+    public PoeticJuggler(int beanBags, Poem poem) {  //зачем нам этот конструктор? TODO
         super(beanBags);
         this.poem = poem;
     }
+
 
     public void perform() {
         super.perform();

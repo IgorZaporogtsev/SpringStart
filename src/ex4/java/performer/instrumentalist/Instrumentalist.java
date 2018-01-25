@@ -35,7 +35,7 @@ public class Instrumentalist implements Performer{
     private Instrument instrument;
 
     @Autowired
-    @Qualifier("piano") //помогает жестко обозначить какой компонент выбирвать Saxophone или Piano
+    @Qualifier("key_instrument") //помогает жестко обозначить какой компонент выбирвать Saxophone или Piano
     public void setInstrument(Instrument instrument) { // Внедрение инструмента атрибут ref="saxophone" в компоненте в файле xml
         this.instrument = instrument;
 
