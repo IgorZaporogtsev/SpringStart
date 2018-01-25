@@ -4,7 +4,7 @@ import ex4.java.performer.Instrument;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component // помечаем что бин
+@Component // помечаем что бин или в XML  <bean id="piano" class="ex4.java.performer.instrumentalist.Piano" />
 @Qualifier("key_instrument")
 public class Piano implements Instrument {
 

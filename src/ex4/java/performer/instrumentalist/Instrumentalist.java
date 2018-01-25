@@ -5,7 +5,13 @@ import ex4.java.performer.Performer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
+/*
+ <bean id="benny"
+          class="ex4.java.performer.instrumentalist.Instrumentalist">
+        <property name="song" value="Jingle Bells" />
+       <property name="instrument" ref="saxophone" />
+    </bean>
+*/
 @Component("benny")
 public class Instrumentalist implements Performer{
 
@@ -34,8 +40,29 @@ public class Instrumentalist implements Performer{
 
     private Instrument instrument;
 
+    /*
+     @Qualifier("piano") или @Qualifier("saxophone")  помогает жестко обозначить ПО КЛЮЧУ какой компонент выбирвать Saxophone или Piano
+      Нужно использовать этот XML
+      <bean id="saxophone"-->
+          <!--class="ex4.java.performer.instrumentalist.Saxophone" />
+          <bean id="piano"-->
+          <!--class="ex4.java.performer.instrumentalist.Piano" />-
+
+
+
+     @Qualifier("key_instrument")  помогает жестко обозначить ПО ИМЕНИ какой компонент выбирвать Saxophone или Piano
+
+      Можно использовать этот XML или в Piano.class добавить @Qualifier("key_instrument")
+     <bean class="ex4.java.performer.instrumentalist.Piano">
+        <qualifier value="key_instrument" />
+    </bean>
+
+
+    */
+
     @Autowired
-    @Qualifier("key_instrument") //помогает жестко обозначить какой компонент выбирвать Saxophone или Piano
+    @Qualifier("key_instrument")
+
     public void setInstrument(Instrument instrument) { // Внедрение инструмента атрибут ref="saxophone" в компоненте в файле xml
         this.instrument = instrument;
 
