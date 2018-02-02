@@ -62,7 +62,6 @@ public class Instrumentalist implements Performer{
 
     @Autowired
     @Qualifier("key_instrument")
-
     public void setInstrument(Instrument instrument) { // Внедрение инструмента атрибут ref="saxophone" в компоненте в файле xml
         this.instrument = instrument;
 

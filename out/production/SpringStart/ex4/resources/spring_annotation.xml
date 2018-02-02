@@ -26,11 +26,11 @@
        <property name="instrument" ref="saxophone" />
     </bean>-->
 
-    <bean id="saxophone"
-          class="ex4.java.performer.instrumentalist.Saxophone" />
+    <!--<bean id="saxophone"-->
+          <!--class="ex4.java.performer.instrumentalist.Saxophone" />-->
 
-    <bean id="piano"
-          class="ex4.java.performer.instrumentalist.Piano" />
+    <!--<bean id="piano"-->
+          <!--class="ex4.java.performer.instrumentalist.Piano" />-->
 
 <!--================================================================-->
 
